@@ -46,6 +46,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadNewScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Game Exit");
+        Application.Quit();
     }
 }

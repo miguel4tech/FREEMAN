@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415501576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1, z: -5}
+  m_LocalPosition: {x: 3.5, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1136994913350202544, guid: 917e00053cb499241a1d42e2b2716532, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.66
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1136994913350202544, guid: 917e00053cb499241a1d42e2b2716532, type: 3}
       propertyPath: m_LocalPosition.y
@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1136994913350202544, guid: 917e00053cb499241a1d42e2b2716532, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1136994913350202544, guid: 917e00053cb499241a1d42e2b2716532, type: 3}
       propertyPath: m_LocalRotation.w
@@ -638,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 91537696499146005, guid: 8526fc62d267e704aabe14dd3ca9d7ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 91537696499146005, guid: 8526fc62d267e704aabe14dd3ca9d7ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -972,8 +972,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0ee63681324ae4eae43f64e3039a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1022454224}
   enemyAnim: {fileID: 1708459883}
   maxHealth: 100
+  speed: 5
 --- !u!136 &1708459886
 CapsuleCollider:
   m_ObjectHideFlags: 0

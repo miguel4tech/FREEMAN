@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    #region VARIABLES
     public Animator anim;
 
     public Transform attackPoint;
@@ -18,7 +19,7 @@ public class PlayerCombat : MonoBehaviour
 
     public int maxHealth = 100;
     private int currentHealth;
-
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +34,9 @@ public class PlayerCombat : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.K))
             {
-            Attack();
-            //Slash twice per second
-            nextAttackTime = nextAttackTime + 1f/attackRange;
+                Attack();
+                //Slash twice per second
+                nextAttackTime = nextAttackTime + 1f/attackRange;
             }
 
             if (Input.GetKeyDown(KeyCode.J))
@@ -130,4 +131,5 @@ public class PlayerCombat : MonoBehaviour
         return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 }
