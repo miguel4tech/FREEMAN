@@ -53,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void Attack()
+    public void Attack()
     {
         //Play attack slash animation
         anim.SetTrigger("Slash");
@@ -72,7 +72,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    void ComboAttack()
+    public void ComboAttack()
     {
         //Play attack slash-heavy animation
         anim.SetTrigger("Slash-Heavy");
@@ -105,7 +105,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     //Block damage
-    void Blocking()
+    public void Blocking()
     {
         anim.SetTrigger("Block");
     }
