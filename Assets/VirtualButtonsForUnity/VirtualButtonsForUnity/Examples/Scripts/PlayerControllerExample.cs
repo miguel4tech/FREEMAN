@@ -15,6 +15,8 @@ public class PlayerControllerExample : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
+    public Animator anim;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -36,6 +38,8 @@ public class PlayerControllerExample : MonoBehaviour
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
+            anim.SetTrigger("IsRunning");
+
         }
 
         // bool jumpPress = playerInput.Player.Jump.IsPressed();
