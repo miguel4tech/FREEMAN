@@ -20,8 +20,8 @@ public class SpawnManager : MonoBehaviour
         {
             EnemyWave();
             startText.SetActive(false);
-             //increment next_spawn_time
-             next_spawn_time += 5.0f;
+            //increment next_spawn_time
+            next_spawn_time += 5.0f;
         }
     
     }
