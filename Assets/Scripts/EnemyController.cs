@@ -1,34 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     public GameObject player;
+    public float attackRange = 1.5f;
+    public Transform playerPosition;
     public Animator enemyAnim;
 
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
+    
+    public Slider currentHealthBar;
+
 
     [SerializeField]
-    private float speed = 5f;
+    private float speed = 1.5f;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Start() //initializing components
     {
         enemyAnim = GetComponent<Animator>();
+        player = GameObject.Find("SwordWarrior");
+        playerPosition = GameObject.Find("SwordWarrior").transform;
 
-        currentHealth = maxHealth;
+        currentHealthBar = Slider.FindObjectOfType<Slider>();
+        currentHealthBar.value =  currentHealth = maxHealth;
     }
 
     void Update()
     {
-        //Causes enemies to charge at Player
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        if(Vector3.Distance(transform.position, player.transform.position) > attackRange)
+        {
+        //Enemies follow Player
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
+        }
+
+        Vector3 direction = Vector3.RotateTowards(Vector3.forward, player.transform.position - transform.position, 2f, 0f);
+        //Enemy faces player direction
+        transform.rotation = Quaternion.LookRotation(direction);
+        //Update health bar UI
+        currentHealthBar.value = currentHealth;
     }
 
+    void Attack()
+    {
+        enemyAnim.SetTrigger("Slash");
+    }
 
     // Inflict damage on the enemy
     public void TakeDamage(int damage)

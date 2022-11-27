@@ -15,12 +15,16 @@ public class PlayerControllerExample : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
+    
+
     public Animator anim;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
         playerInput = new PlayerActionsExample();
+        
     }
 
     private void Update()
@@ -28,15 +32,18 @@ public class PlayerControllerExample : MonoBehaviour
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
-            playerVelocity.y = 0f;
+            playerVelocity.y = -0.5f;
         }
 
         Vector2 movement = playerInput.Player.Move.ReadValue<Vector2>();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
 
+        
+
         if (move != Vector3.zero)
         {
+
             gameObject.transform.forward = move;
             anim.SetTrigger("IsRunning");
 

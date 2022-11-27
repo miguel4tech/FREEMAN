@@ -53,6 +53,15 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fight"",
+                    ""type"": ""Value"",
+                    ""id"": ""2583eef2-924b-4733-a82e-1c087034368b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,17 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e4f0e02-950c-4806-91ad-451dc61429d8"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,6 +224,7 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_Fight = m_Player.FindAction("Fight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,6 +287,7 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_Fight;
     public struct PlayerActions
     {
         private @PlayerActionsExample m_Wrapper;
@@ -273,6 +295,7 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @Fight => m_Wrapper.m_Player_Fight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,6 +314,9 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Fight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFight;
+                @Fight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFight;
+                @Fight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -304,6 +330,9 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Fight.started += instance.OnFight;
+                @Fight.performed += instance.OnFight;
+                @Fight.canceled += instance.OnFight;
             }
         }
     }
@@ -331,5 +360,6 @@ public partial class @PlayerActionsExample : IInputActionCollection2, IDisposabl
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnFight(InputAction.CallbackContext context);
     }
 }

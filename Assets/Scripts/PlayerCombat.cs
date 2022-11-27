@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class PlayerCombat : MonoBehaviour
         //Damage Enemies
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             
             //Message
             Debug.Log("We hit " + enemy.name);
@@ -83,7 +84,7 @@ public class PlayerCombat : MonoBehaviour
         //Damage Enemies
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
 
         //Message
         Debug.Log("We hit with heavy " + enemy.name);
@@ -124,6 +125,23 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("GAME Over!");
     }
 
+
+    // if( FindObjectsOfType<Enemy>().Length ==0)
+    //     {
+    //         //Win Level
+    //         winLevel = true;
+    //         timer += Time.deltaTime;
+    //         if(timer > 5)
+    //         {
+    //             int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+    //             if (nextLevel == 4)
+    //                 SceneManager.LoadScene(0);
+
+    //             if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
+    //                 PlayerPrefs.SetInt("ReachedLevel", nextLevel);
+
+    //             SceneManager.LoadScene(nextLevel);
+    //         }
     //Displays in scene editor a sphere gizmos to show the range of attack w.r.t the enemy
     void OnDrawGizmosSelected()
     {

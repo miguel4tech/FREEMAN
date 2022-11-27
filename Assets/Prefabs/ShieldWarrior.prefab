@@ -214,9 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3603584246793145663}
   - component: {fileID: 3603584246802440867}
-  - component: {fileID: 3695121904152258323}
-  - component: {fileID: 3695121904152258320}
-  - component: {fileID: 8320380097635715246}
+  - component: {fileID: -4488544860638508492}
   m_Layer: 3
   m_Name: ShieldWarrior
   m_TagString: Untagged
@@ -250,32 +248,18 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3603584246793048287}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9035850883732af4daf57c888e1fefce, type: 3}
-  m_Controller: {fileID: 9100000, guid: 991b8929c72d6e345b91b32f635cf976, type: 2}
-  m_CullingMode: 1
+  m_Avatar: {fileID: 9000000, guid: 2b3dd1aebd3c4d7409bce82e45afa5b4, type: 3}
+  m_Controller: {fileID: 9100000, guid: da736ca1ca99d0e4bb8da2152dba7aab, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &3695121904152258323
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3603584246793048287}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.28
-  m_Height: 1.93
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.97, z: 0}
---- !u!114 &3695121904152258320
+--- !u!114 &-4488544860638508492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,31 +268,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3603584246793048287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0ee63681324ae4eae43f64e3039a7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 431f6adc334f98141a7b8af3b772785c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemyAnim: {fileID: 3603584246802440867}
+  chaseRange: 5
+  attackRange: 2
+  speed: 3
+  currentHealth: 0
   maxHealth: 100
-  speed: 5
---- !u!143 &8320380097635715246
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3603584246793048287}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.3
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  currentHealthBar: {fileID: 0}
+  enemyAnim: {fileID: 0}
 --- !u!1 &3603584246793048289
 GameObject:
   m_ObjectHideFlags: 0
