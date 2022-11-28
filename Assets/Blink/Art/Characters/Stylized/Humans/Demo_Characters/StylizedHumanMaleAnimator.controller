@@ -172,19 +172,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: combat
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: spell
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -215,7 +215,7 @@ AnimatorStateMachine:
     m_Position: {x: 348.67377, y: 159.75854, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5534467267103982543}
-    m_Position: {x: 264.58002, y: 259.4174, z: 0}
+    m_Position: {x: 270, y: 460, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5866791479209421437}
     m_Position: {x: 274.58002, y: 269.4174, z: 0}
@@ -227,7 +227,7 @@ AnimatorStateMachine:
     m_Position: {x: -60, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5384058099840993422}
-    m_Position: {x: 651.34827, y: 290.19666, z: 0}
+    m_Position: {x: 560, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4007789258760872197}
     m_Position: {x: 661.34827, y: 300.19666, z: 0}
