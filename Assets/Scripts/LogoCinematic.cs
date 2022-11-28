@@ -11,17 +11,15 @@ public class LogoCinematic : MonoBehaviour {
 
 	private Animator humanAnimator;
 
-	void Awake(){
-		
-	}
-
 	
-	void Start () {
+	void Start () 
+	{
 
 		//Initaialise the human animator
-		humanAnimator = GameObject.Find("HumanMale_Character").GetComponent<Animator>();	
+		humanAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();	
 
-		//Time.timeScale = 0.2f;
+		//Slow-Motion Effect
+		Time.timeScale = 0.2f;
 		
 		// Slide in
 		man.transform.localPosition += -Vector3.right * 15f;
@@ -49,12 +47,18 @@ public class LogoCinematic : MonoBehaviour {
 		LeanAudio.play( audioClip ); //a:fvb:8,.000819672,.007666667,,,.01065573,.002424242,,,.02704918,.007454545,,,.03770492,.002575758,,,.052459,.007090909,,,.06885245,.002939394,,,.0819672,.006727273,,,.1040983,.003181818,,,.1188525,.006212121,,,.145082,.004151515,,,.1893443,.005636364,,,8~8,,1.163155,,-,.3098361,,,,.5,.003524712,,,8~.1,,,~11025~0~~
 	}
 
-	IEnumerator HumanAnimation() {
-		yield return new WaitForSeconds(2);
-		humanAnimator.SetTrigger("idleFight");
+	IEnumerator HumanAnimation() 
+	{
+		yield return new WaitForSeconds(0.9f);
+		humanAnimator.SetTrigger("Idle");
+		humanAnimator.applyRootMotion = true;
 
 		yield return new WaitForSeconds(2);
 		humanAnimator.SetBool("combat",true);
+
+        yield return new WaitForSeconds(1);
+        humanAnimator.SetBool("combat", false);
+
 
     }
 
