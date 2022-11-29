@@ -24,8 +24,8 @@ public class EnemyController : MonoBehaviour
     void Start() //initializing components
     {
         enemyAnim = GetComponent<Animator>();
-        player = GameObject.Find("SwordWarrior");
-        playerPosition = GameObject.Find("SwordWarrior").transform;
+        player = GameObject.FindWithTag("Player");
+        playerPosition = GameObject.FindWithTag("Player").transform;
 
         currentHealthBar = Slider.FindObjectOfType<Slider>();
         currentHealthBar.value =  currentHealth = maxHealth;

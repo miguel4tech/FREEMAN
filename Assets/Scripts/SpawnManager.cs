@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemy;
-    public GameObject startText;
+    
     float next_spawn_time;
 
     void Start()
@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
         if(Time.time > next_spawn_time)
         {
             EnemyWave();
-            startText.SetActive(false);
+            
             //increment next_spawn_time
             next_spawn_time += 5.0f;
         }

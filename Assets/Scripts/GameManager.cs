@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
 
-    private void Awake()
+    void Awake()
     {
         if (singleton == null)
         {
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine("LoadNextScene");
     }
 
-    //Go to the next scene after 7s
+    //Go to the next scene(MainMenu) after 8seconds
     IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(8);
