@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     public Animator enemyAnim;
 
-    void Start()
+    void Start() //Initializing components
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealthBar = Slider.FindObjectOfType<Slider>();
@@ -84,6 +84,7 @@ public class Enemy : MonoBehaviour
 
         if(currentHealth <= 0)
         {
+            currentState = "DeathState";
             Die();
         }
     }
@@ -91,12 +92,14 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        //play a die animation
+        //Play a die animation
         enemyAnim.SetTrigger("isDead");
 
-        //disable the script and the collider
-        GetComponent<CapsuleCollider>().enabled = false;
-        Destroy(gameObject, 3);
+        //Disable enemy so no interaction is allowed
+        GetComponent<Collider>().enabled = false;
+
+        //Disable the enemy script
         this.enabled = false;
     }
+
 }

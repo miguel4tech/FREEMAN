@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerCombat : MonoBehaviour
 {
     #region VARIABLES
+    public static int score;
+    public TextMeshProUGUI scoreText; 
+
     public Animator anim;
 
     public Transform attackPoint;
