@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update health bar UI
+        currentHealthBar.value = currentHealth;
         // if (PlayerCombat.gameOver)
         // {
         //     enemyAnim.enabled = false;
@@ -71,8 +73,6 @@ public class Enemy : MonoBehaviour
             if (distance > attackRange)
                 currentState = "ChaseState";
         }
-    //Update health bar UI
-        currentHealthBar.value = currentHealth;
     }
 
     public void TakeDamage(int damage)
@@ -84,8 +84,8 @@ public class Enemy : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            currentState = "DeathState";
             Die();
+            currentState = "DeathState";
         }
     }
     
@@ -93,13 +93,12 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         //Play a die animation
-        enemyAnim.SetTrigger("isDead");
+        enemyAnim.SetBool("isDead", true);
 
         //Disable enemy so no interaction is allowed
         GetComponent<Collider>().enabled = false;
-
-        //Disable the enemy script
-        this.enabled = false;
+        //Destroy enemy
+        Object.Destroy(gameObject, 20f );
     }
 
 }

@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
 
     public float attackRange = 0.5f;
-    public int attackDamage = 30;
+    public int attackDamage = 20;
 
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
@@ -23,11 +23,14 @@ public class PlayerCombat : MonoBehaviour
 
     public int maxHealth = 100;
     private int currentHealth;
+
+    public bool gameOver;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        attackPoint = GameObject.FindGameObjectWithTag("Target Point").transform;
         currentHealth = maxHealth;
     }
 
@@ -105,6 +108,7 @@ public class PlayerCombat : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            gameOver = true;
         }
     }
 
@@ -145,6 +149,7 @@ public class PlayerCombat : MonoBehaviour
 
     //             SceneManager.LoadScene(nextLevel);
     //         }
+
     //Displays in scene editor a sphere gizmos to show the range of attack w.r.t the enemy
     void OnDrawGizmosSelected()
     {

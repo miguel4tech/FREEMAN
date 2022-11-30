@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Vector3 cameraOffset = new Vector3(2.0f, 1.0f, -5.0f);
+    public Vector3 cameraOffset = new Vector3(2.0f, 1.0f,-5.0f);
     public Transform targetPlayer;
 
     //Some cool skybox rotation
