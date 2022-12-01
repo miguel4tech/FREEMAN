@@ -8,16 +8,15 @@ public class PlayerControllerExample : MonoBehaviour
 
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpHeight = 1.0f;
-    [SerializeField] private float gravityValue = -9.81f;
 
     protected CharacterController controller;
     protected PlayerActionsExample playerInput;
+    protected Animator anim;
+
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-
     
-
-    public Animator anim;
+    private float gravityValue = -9.81f;
 
     private void Awake()
     {

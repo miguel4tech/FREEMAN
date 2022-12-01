@@ -7,22 +7,26 @@ public class PlayerCombat : MonoBehaviour
 {
     #region VARIABLES
     public static int score;
-    public TextMeshProUGUI scoreText; 
+    public TextMeshProUGUI scoreText;
+
+    public Slider currentHealthPoint;
 
     public Animator anim;
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
-    public float attackRange = 0.5f;
+    public float attackRange = 1.5f;
     public int attackDamage = 20;
 
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
 
 
-    public int maxHealth = 100;
-    private int currentHealth;
+    private int maxHealth = 100;
+    public int currentHealth;
+    
+    public PlayerControllerExample movement;
 
     public bool gameOver;
     #endregion
@@ -31,13 +35,16 @@ public class PlayerCombat : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         attackPoint = GameObject.FindGameObjectWithTag("Target Point").transform;
-        currentHealth = maxHealth;
+        currentHealthPoint.value = currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextAttackTime)
+        //Update health bar UI
+        currentHealthPoint.value = currentHealth;
+
+        if (Time.time >= nextAttackTime)
         {
             if(Input.GetKeyDown(KeyCode.K))
             {
@@ -53,10 +60,6 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = nextAttackTime + 1f / attackRange;
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                Blocking();
-            }
         }
     }
 
@@ -112,24 +115,21 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    //Block damage
-    public void Blocking()
-    {
-        anim.SetTrigger("Block");
-    }
     void Die()
     {
         //Play died animation
         anim.SetBool("IsDead", true);
+        gameOver= true;
 
         //Disable enemy so no interaction is allowed
         GetComponent<Collider>().enabled = false;
 
-        //Disable the this script
+        //Disable attached scripts
+        movement.enabled = false;
         this.enabled = false;
 
         //Debug message
-        Debug.Log("GAME Over!");
+        Debug.Log("GAME OVER!");
     }
 
 
@@ -138,7 +138,7 @@ public class PlayerCombat : MonoBehaviour
     //         //Win Level
     //         winLevel = true;
     //         timer += Time.deltaTime;
-    //         if(timer > 5)
+    //         if(timer > 5) //less than 5 seconds
     //         {
     //             int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
     //             if (nextLevel == 4)

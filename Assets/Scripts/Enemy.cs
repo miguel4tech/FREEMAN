@@ -5,10 +5,16 @@ public class Enemy : MonoBehaviour
 {
     private string currentState = "IdleState";
     private Transform target;
+    public Transform enemyAttackPoint;
+    public LayerMask playerLayer;
 
     public float chaseRange = 5;
     public float attackRange = 2;
+    public int attackDamage = 2;
     public float speed = 3;
+
+    public float attackRate = 2f;
+    private float nextAttackTime = 0f;
 
     public int currentHealth;
     public int maxHealth = 100;
@@ -19,7 +25,8 @@ public class Enemy : MonoBehaviour
     void Start() //Initializing components
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        currentHealthBar = Slider.FindObjectOfType<Slider>();
+        enemyAttackPoint = GameObject.Find("enemyAttackPoint").transform;
+        currentHealthBar = FindObjectOfType<Slider>();
         currentHealthBar.value = currentHealth = maxHealth;
         enemyAnim = GetComponentInChildren<Animator>();
     }
@@ -35,24 +42,25 @@ public class Enemy : MonoBehaviour
         //     this.enabled = false;
         // }
 
+        #region MOVEMENT
         float distance = Vector3.Distance(transform.position, target.position);
 
-        if(currentState == "IdleState")
+        if (currentState == "IdleState")
         {
             if (distance < chaseRange)
                 currentState = "ChaseState";
         }
-        else if(currentState == "ChaseState")
+        else if (currentState == "ChaseState")
         {
             //play the run animation
             enemyAnim.SetTrigger("chase");
             enemyAnim.SetBool("isAttacking", false);
 
-            if(distance < attackRange)
+            if (distance < attackRange)
                 currentState = "AttackState";
 
             //move towards the player
-            if(target.position.x > transform.position.x)
+            if (target.position.x > transform.position.x)
             {
                 //move right
                 transform.Translate(transform.right * speed * Time.deltaTime);
@@ -66,13 +74,29 @@ public class Enemy : MonoBehaviour
             }
 
         }
-        else if(currentState == "AttackState")
+        else if (currentState == "AttackState")
         {
-            enemyAnim.SetBool("isAttacking", true);
+            if (Time.time >= nextAttackTime)
+            {
+                enemyAnim.SetBool("isAttacking", true);
+                //Detect player in attack range
+                Collider[] playerInRange = Physics.OverlapSphere(enemyAttackPoint.position, attackRange, playerLayer);
+                //Damage Player and Add-Ons
+                foreach (Collider Player in playerInRange)
+                {
+                    Player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
 
-            if (distance > attackRange)
+                    //Message
+                    Debug.Log(Player.name + " was stuck");
+                }
+                //Limits attacks to twice per time
+                nextAttackTime = nextAttackTime + 1f / attackRange;
+
+            }
+                if (distance > attackRange)
                 currentState = "ChaseState";
         }
+        #endregion
     }
 
     public void TakeDamage(int damage)
@@ -99,6 +123,13 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         //Destroy enemy
         Object.Destroy(gameObject, 20f );
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (enemyAttackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(enemyAttackPoint.position, attackRange);
     }
 
 }
