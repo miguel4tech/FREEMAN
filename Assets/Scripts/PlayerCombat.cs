@@ -26,7 +26,7 @@ public class PlayerCombat : MonoBehaviour
     private int maxHealth = 100;
     public int currentHealth;
     
-    public PlayerControllerExample movement;
+    public PlayerControllerExample movement; //Reference to the movement script controlling the button UI
 
     public bool gameOver;
     #endregion
@@ -133,23 +133,6 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
-    // if( FindObjectsOfType<Enemy>().Length ==0)
-    //     {
-    //         //Win Level
-    //         winLevel = true;
-    //         timer += Time.deltaTime;
-    //         if(timer > 5) //less than 5 seconds
-    //         {
-    //             int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-    //             if (nextLevel == 4)
-    //                 SceneManager.LoadScene(0);
-
-    //             if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
-    //                 PlayerPrefs.SetInt("ReachedLevel", nextLevel);
-
-    //             SceneManager.LoadScene(nextLevel);
-    //         }
-
     //Displays in scene editor a sphere gizmos to show the range of attack w.r.t the enemy
     void OnDrawGizmosSelected()
     {
@@ -157,5 +140,6 @@ public class PlayerCombat : MonoBehaviour
         return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 
 }

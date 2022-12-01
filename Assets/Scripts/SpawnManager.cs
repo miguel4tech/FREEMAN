@@ -5,24 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemy;
-    
-    //float next_spawn_time;
-
-    void Start()
+    void OnTriggerEnter()
     {
-        //start off with next spawn time being 'in 5 seconds'
-        //next_spawn_time = Time.time+5.0f;
-
+        var newEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
+        newEnemy.transform.parent = gameObject.transform;
     }
-    void Update()
-    {
-    
-    }
-
-    //void EnemyWave()
-    //{
-    //    float spawnPosition = Random.Range(-10f, 5f);
-    //    var newEnemy = Instantiate(enemy, new Vector3(spawnPosition, 0.95f, 0), Quaternion.Euler(0,-90,0));
-    //    newEnemy.transform.parent = gameObject.transform;
-    //}
 }

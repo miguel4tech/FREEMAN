@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    #region VARIABLES
     private string currentState = "IdleState";
     private Transform target;
     public Transform enemyAttackPoint;
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour
     public Slider currentHealthBar;
 
     public Animator enemyAnim;
-
+    #endregion
     void Start() //Initializing components
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -36,10 +37,11 @@ public class Enemy : MonoBehaviour
     {
         //Update health bar UI
         currentHealthBar.value = currentHealth;
+
         // if (PlayerCombat.gameOver)
         // {
-        //     enemyAnim.enabled = false;
-        //     this.enabled = false;
+        //     GameOverPanel.enabled = true;
+        //     Time.timeScale = 0;
         // }
 
         #region MOVEMENT
@@ -84,13 +86,13 @@ public class Enemy : MonoBehaviour
                 //Damage Player and Add-Ons
                 foreach (Collider Player in playerInRange)
                 {
+                    nextAttackTime = nextAttackTime + 1f / attackRange;
                     Player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
 
                     //Message
                     Debug.Log(Player.name + " was stuck");
                 }
                 //Limits attacks to twice per time
-                nextAttackTime = nextAttackTime + 1f / attackRange;
 
             }
                 if (distance > attackRange)
