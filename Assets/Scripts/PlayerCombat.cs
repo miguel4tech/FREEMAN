@@ -43,6 +43,9 @@ public class PlayerCombat : MonoBehaviour
     {
         //Update health bar UI
         currentHealthPoint.value = currentHealth;
+        //Ensuring the object stays on track
+        if (transform.position.z != 0)
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
         if (Time.time >= nextAttackTime)
         {

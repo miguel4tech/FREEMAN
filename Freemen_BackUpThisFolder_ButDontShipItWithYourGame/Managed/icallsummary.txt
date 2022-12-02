@@ -162,6 +162,8 @@ UnityEngine.AndroidJNI::SetStaticStringField
 UnityEngine.AndroidJNI::SetStringField
 UnityEngine.AndroidJNIHelper::get_debug
 UnityEngine.AndroidJNIHelper::set_debug
+UnityEngine.Animation::GetStateCount
+UnityEngine.Animation::GetStateAtIndex
 UnityEngine.AnimationCurve::Internal_Equals
 UnityEngine.AnimationCurve::get_length
 UnityEngine.AnimationCurve::Internal_Create
@@ -177,6 +179,7 @@ UnityEngine.Animator::get_hasBoundPlayables
 UnityEngine.Animator::ResetTriggerString
 UnityEngine.Animator::SetBoolString
 UnityEngine.Animator::SetTriggerString
+UnityEngine.Animator::set_applyRootMotion
 UnityEngine.Application::get_isBatchMode
 UnityEngine.Application::get_isFocused
 UnityEngine.Application::get_isPlaying
@@ -368,6 +371,7 @@ UnityEngine.GameObject::GetComponentInParent
 UnityEngine.GameObject::Internal_AddComponentWithType
 UnityEngine.GameObject::CreatePrimitive
 UnityEngine.GameObject::Find
+UnityEngine.GameObject::FindGameObjectWithTag
 UnityEngine.GameObject::FindGameObjectsWithTag
 UnityEngine.GameObject::get_transform
 UnityEngine.Gizmos::DrawLine_Injected
@@ -392,7 +396,6 @@ UnityEngine.Gradient::Internal_Equals
 UnityEngine.Gradient::Init
 UnityEngine.Gradient::Cleanup
 UnityEngine.Graphics::Internal_GetMaxDrawMeshInstanceCount
-UnityEngine.Graphics::Blit2
 UnityEngine.Graphics::Internal_DrawTexture
 UnityEngine.Graphics::Internal_SetNullRT
 UnityEngine.Graphics::Internal_SetRTSimple_Injected
@@ -686,6 +689,7 @@ UnityEngine.Renderer::GetSharedMaterial
 UnityEngine.Renderer::GetMaterialArray
 UnityEngine.Rendering.GraphicsSettings::get_lightsUseLinearIntensity
 UnityEngine.Rendering.ScriptableRenderContext::GetCameras_Internal_Injected
+UnityEngine.RenderSettings::get_skybox
 UnityEngine.RenderTexture::get_height
 UnityEngine.RenderTexture::get_width
 UnityEngine.RenderTexture::GetColorBuffer_Injected
@@ -735,7 +739,6 @@ UnityEngine.Sprite::get_triangles
 UnityEngine.Sprite::GetInnerUVs_Injected
 UnityEngine.Sprite::GetOuterUVs_Injected
 UnityEngine.Sprite::GetPadding_Injected
-UnityEngine.Sprite::GetTextureRectOffset_Injected
 UnityEngine.Sprite::GetTextureRect_Injected
 UnityEngine.Sprite::get_border_Injected
 UnityEngine.Sprite::get_bounds_Injected
@@ -749,7 +752,6 @@ UnityEngine.Sprite::get_vertices
 UnityEngine.SpriteRenderer::get_color_Injected
 UnityEngine.SpriteRenderer::set_color_Injected
 UnityEngine.SpriteRenderer::set_sprite
-UnityEngine.SpriteRenderer::get_sprite
 UnityEngine.SubsystemDescriptorBindings::GetId
 UnityEngine.SubsystemManager::StaticConstructScriptingClassMap
 UnityEngine.SubsystemsImplementation.SubsystemDescriptorStore::ReportSingleSubsystemAnalytics
@@ -810,12 +812,8 @@ UnityEngine.Texture2D::GetRawImageDataSize
 UnityEngine.Texture2D::GetWritableImageData
 UnityEngine.Texture2D::ApplyImpl
 UnityEngine.Texture2D::GetPixelBilinearImpl_Injected
-UnityEngine.Texture2D::GetPixelImpl_Injected
-UnityEngine.Texture2D::ReadPixelsImpl_Injected
 UnityEngine.Texture2D::SetAllPixels32
 UnityEngine.Texture2D::SetPixelImpl_Injected
-UnityEngine.Texture2D::SetPixelsImpl
-UnityEngine.Texture2D::GetPixels
 UnityEngine.Texture2D::get_whiteTexture
 UnityEngine.Texture2D::get_format
 UnityEngine.Texture2DArray::Internal_CreateImpl

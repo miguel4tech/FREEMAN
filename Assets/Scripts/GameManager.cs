@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
     public static bool isGameStarted;
+
     public GameObject isGameStartedPanel;
 
     void Awake()

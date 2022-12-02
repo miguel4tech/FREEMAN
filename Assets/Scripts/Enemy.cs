@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         // {
         //     GameOverPanel.enabled = true;
         //     Time.timeScale = 0;
-        // }
+        //
 
         #region MOVEMENT
         float distance = Vector3.Distance(transform.position, target.position);
@@ -95,6 +95,10 @@ public class Enemy : MonoBehaviour
                 //Limits attacks to twice per time
 
             }
+
+            //Ensuring the object stays on track
+            if(transform.position.z != 0)
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 if (distance > attackRange)
                 currentState = "ChaseState";
         }
