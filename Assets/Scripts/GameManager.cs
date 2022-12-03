@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             DontDestroyOnLoad(gameObject);
         }
+
+        Audiomanager.instance.PlayMusic("Combat-Theme_Africa");
     }
 
 
