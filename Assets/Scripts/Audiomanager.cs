@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 
 public class Audiomanager : MonoBehaviour
@@ -25,7 +25,7 @@ public class Audiomanager : MonoBehaviour
     }
 	void Start()
 	{
-		PlayMusic("Theme");
+		PlayMusic("Combat-Theme_Africa");
 	}
 
 	public void PlayMusic (string name)

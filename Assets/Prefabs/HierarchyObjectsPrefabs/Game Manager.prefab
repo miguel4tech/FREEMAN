@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3076da4da09e0974293605f2bc401ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameStartedPanel: {fileID: 0}
