@@ -1100,7 +1100,6 @@ MonoBehaviour:
   attackRange: 1.5
   attackDamage: 20
   attackRate: 2
-  currentHealth: 0
   movement: {fileID: 5629240728151772429}
   gameOver: 0
 --- !u!1 &5449400894735358766

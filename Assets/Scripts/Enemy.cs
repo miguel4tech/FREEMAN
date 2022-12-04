@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
     #region VARIABLES
     private string currentState = "IdleState";
     private Transform target;
-    public Transform enemyAttackPoint;
-    public LayerMask playerLayer;
+    //public Transform enemyAttackPoint;
+    //public LayerMask playerLayer;
 
     public float chaseRange = 5;
     public float attackRange = 2;
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     void Start() //Initializing components
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        enemyAttackPoint = GameObject.Find("enemyAttackPoint").transform;
+        //enemyAttackPoint = GameObject.Find("enemyAttackPoint").transform;
         currentHealthBar = FindObjectOfType<Slider>();
         currentHealthBar.value = currentHealth = maxHealth;
         enemyAnim = GetComponentInChildren<Animator>();
@@ -82,16 +82,16 @@ public class Enemy : MonoBehaviour
             {
                 enemyAnim.SetBool("isAttacking", true);
                 //Detect player in attack range
-                Collider[] playerInRange = Physics.OverlapSphere(enemyAttackPoint.position, attackRange, playerLayer);
+                //Collider[] playerInRange = Physics.OverlapSphere(enemyAttackPoint.position, attackRange, playerLayer);
                 //Damage Player and Add-Ons
-                foreach (Collider Player in playerInRange)
-                {
-                    nextAttackTime = nextAttackTime + 1f / attackRange;
-                    Player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                // foreach (Collider Player in playerInRange)
+                // {
+                //     nextAttackTime = nextAttackTime + 1f / attackRange;
+                //     Player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
 
-                    //Message
-                    Debug.Log(Player.name + " was stuck");
-                }
+                //     //Message
+                //     Debug.Log(Player.name + " was stuck");
+                // }
                 //Limits attacks to twice per time
 
             }
@@ -131,11 +131,11 @@ public class Enemy : MonoBehaviour
         Object.Destroy(gameObject, 20f );
     }
 
-    void OnDrawGizmosSelected()
-    {
-        if (enemyAttackPoint == null)
-            return;
-        Gizmos.DrawWireSphere(enemyAttackPoint.position, attackRange);
-    }
+    // void OnDrawGizmosSelected()
+    // {
+    //     if (enemyAttackPoint == null)
+    //         return;
+    //     Gizmos.DrawWireSphere(enemyAttackPoint.position, attackRange);
+    // }
 
 }

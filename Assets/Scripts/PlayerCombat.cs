@@ -24,11 +24,12 @@ public class PlayerCombat : MonoBehaviour
 
 
     private int maxHealth = 100;
-    public int currentHealth;
+    public static int currentHealth;
     
     public PlayerControllerExample movement; //Reference to the movement script controlling the button UI
 
-    public bool gameOver;
+    public static bool gameOver;
+    public GameObject gameOverPanel;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -123,9 +124,11 @@ public class PlayerCombat : MonoBehaviour
         //Play died animation
         anim.SetBool("IsDead", true);
         gameOver= true;
+        gameOverPanel.SetActive(true);
 
         //Disable enemy so no interaction is allowed
         GetComponent<Collider>().enabled = false;
+
 
         //Disable attached scripts
         movement.enabled = false;
