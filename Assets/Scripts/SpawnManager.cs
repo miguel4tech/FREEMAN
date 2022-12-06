@@ -9,5 +9,6 @@ public class SpawnManager : MonoBehaviour
     {
         var newEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
         newEnemy.transform.parent = gameObject.transform;
+        //Object.Destroy(gameObject, 20f);
     }
 }

@@ -1097,6 +1097,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   enemiesCount: 0
+  enemiesCountText: {fileID: 0}
   attackRange: 1.5
   attackDamage: 20
   attackRate: 2

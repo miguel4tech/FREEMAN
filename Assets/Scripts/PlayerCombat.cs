@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayers;
     public int enemiesCount;
+    public TextMeshProUGUI enemiesCountText;
 
     public float attackRange = 1.5f;
     public int attackDamage = 20;
@@ -42,6 +43,7 @@ public class PlayerCombat : MonoBehaviour
         HealthPoint.value = currentHealth;
 
         enemiesCount = GameObject.FindGameObjectsWithTag("Enemies").Length;
+        enemiesCountText.text = "Enemies left: " + enemiesCount.ToString();
 
         LevelComplete();
         //Ensuring the object stays on track
@@ -150,6 +152,8 @@ public class PlayerCombat : MonoBehaviour
             if(timer > 5) // 5 seconds
             {
                 int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+                if (nextLevel == 4)
+                    SceneManager.LoadScene(1); //Returns to MainMenu
                 if(PlayerPrefs.GetInt("CurrentLevel", 1) < nextLevel)
                     PlayerPrefs.SetInt("CurrentLevel", nextLevel);
 
