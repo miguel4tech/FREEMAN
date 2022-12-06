@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3210187871824174832}
   m_Layer: 3
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,9 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseRange: 4
   attackRange: 2.5
-  attackDamage: 2
   speed: 3
-  attackRate: 2
   currentHealth: 0
   maxHealth: 100
   currentHealthBar: {fileID: 0}
@@ -196,7 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a59155ec0cfd54eb9816ebd5698941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCombat: {fileID: 0}
 --- !u!4 &3100263943335100434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2b3dd1aebd3c4d7409bce82e45afa5b4, type: 3}

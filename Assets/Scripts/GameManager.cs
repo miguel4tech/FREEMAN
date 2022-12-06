@@ -11,11 +11,19 @@ public class GameManager : MonoBehaviour
     public static bool isGameStarted;
     public static bool isGamePaused;
 
-    public GameObject isGameStartedPanel;
+    public GameObject gameOverPanel;
+    public GameObject GameStartedPanel;
 
     void Awake()
     {
-        singleton = this;
+		if(singleton== null)
+		    singleton = this;
+		else 
+		{
+			Destroy(gameObject);
+			return;
+		}
+		DontDestroyOnLoad(gameObject);
         Audiomanager.instance.PlayMusic("Combat-Theme_Africa");
     }
 
@@ -33,11 +41,12 @@ public class GameManager : MonoBehaviour
             }
 
             isGameStarted = true;
-            isGameStartedPanel.SetActive(false);
+            GameStartedPanel.SetActive(false);
         }
 
         if(PlayerCombat.gameOver)
         {
+            gameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
     }
@@ -59,7 +68,7 @@ public class GameManager : MonoBehaviour
     }
     public void Quit()
     {
-        Debug.Log("Game Exit");
+        print("Game Exit");
         Application.Quit();
     }
 }
