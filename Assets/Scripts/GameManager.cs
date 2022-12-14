@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour 
 {
     public static GameManager singleton {set; get;}
     public static bool isGameStarted;
@@ -13,21 +13,23 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject GameStartedPanel;
+    private PlayerCombat playerCombat;
 
     void Awake()
     {
-		if(singleton== null)
+		if(singleton == null)
 		    singleton = this;
 		else 
 		{
 			Destroy(gameObject);
-			return;
+            DontDestroyOnLoad(gameObject);
 		}
-		DontDestroyOnLoad(gameObject);
-        Audiomanager.instance.PlayMusic("Combat-Theme_Africa");
     }
 
-
+    private void Start()
+    {
+        ResetLevel();
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,11 +46,15 @@ public class GameManager : MonoBehaviour
             GameStartedPanel.SetActive(false);
         }
 
-        if(PlayerCombat.gameOver)
+        if (PlayerCombat.gameOver)
         {
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
+
+        playerCombat.LevelComplete();
+
+       
     }
 
     public void Pause()
@@ -71,4 +77,20 @@ public class GameManager : MonoBehaviour
         print("Game Exit");
         Application.Quit();
     }
+
+    void ResetLevel()
+    {
+        playerCombat = FindObjectOfType<PlayerCombat>();
+        isGameStarted = false;  
+
+    }
+    private void onLevelFinishedLoading(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        ResetLevel();
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += onLevelFinishedLoading;
+    }
+   
 }

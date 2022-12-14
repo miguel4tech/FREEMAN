@@ -5,21 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager singleton;
-
-    //Awake is called even before Start
-    void Awake()
-    {
-        if (singleton == null)
-        {
-            singleton = this;
-        }
-        else if (singleton != this)
-        {
-            Destroy(gameObject);
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+    public static GameManager singleton { set; get; }
 
     // Update is called once per frame
     void Update()

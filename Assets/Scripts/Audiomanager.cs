@@ -9,20 +9,20 @@ public class Audiomanager : MonoBehaviour
 	public Sound[] musicSounds, sfxSounds;
 	public AudioSource musicSource, sfxSource;
 
-	public static Audiomanager instance;
+	//public static Audiomanager instance;
     
-    void Awake()
-    {
+ //   void Awake()
+ //   {
 
-		if(instance == null)
-			instance = this;
-		else 
-		{
-			Destroy(gameObject);
-			return;
-		}
-		DontDestroyOnLoad(gameObject);
-    }
+	//	if(instance == null)
+	//		instance = this;
+	//	else 
+	//	{
+	//		Destroy(gameObject);
+	//		return;
+	//	}
+	//	DontDestroyOnLoad(gameObject);
+ //   }
 	void Start()
 	{
 		PlayMusic("Combat-Theme_Africa");

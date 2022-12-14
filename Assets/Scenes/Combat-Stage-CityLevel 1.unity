@@ -747,6 +747,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2025941359, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4818426433361874527, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
       propertyPath: m_Name
       value: SwordWarrior
@@ -1018,6 +1022,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 16997121}
+    - target: {fileID: 7713942340112613374, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713942340112613374, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7713942340401607096, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1230,6 +1242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1370844255 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8185892039240928440, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+  m_PrefabInstance: {fileID: 3210187871244135572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1411073339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1404,6 +1421,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3210187871824174832, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1370844255}
+    - target: {fileID: 3210187871824174832, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3210187871824174835, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
       propertyPath: m_RootOrder
       value: 9

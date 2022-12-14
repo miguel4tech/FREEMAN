@@ -725,6 +725,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2025941359, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025941359, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4818426433361874527, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
       propertyPath: m_Name
       value: SwordWarrior
@@ -772,6 +780,10 @@ PrefabInstance:
     - target: {fileID: 5302335328820090085, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629240728151772427, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
+      propertyPath: JumpForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5629240728151772427, guid: 7ece504d9cfd4774ab9747003e8782a3, type: 3}
       propertyPath: HealthPoint
@@ -978,6 +990,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431f6adc334f98141a7b8af3b772785c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1033826920 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8185892039240928440, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+  m_PrefabInstance: {fileID: 3210187871244135572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1170345351 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4326682835188704751, guid: 9e56514995e7f354480b75ad11af7309, type: 3}
@@ -1399,6 +1416,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3210187871824174832, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1033826920}
+    - target: {fileID: 3210187871824174832, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210187871824174833, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3210187871824174835, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1446,6 +1475,18 @@ PrefabInstance:
     - target: {fileID: 3210187871824174839, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185892039240928440, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: m_Mass
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185892039240928440, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: m_Constraints
+      value: 76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185892039240928440, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05b6e6134995927488f1a5633b8cdee7, type: 3}
@@ -1519,9 +1560,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 16997121}
     - target: {fileID: 7713942340111507839, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713942340111507839, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
+      propertyPath: m_MinValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713942340111507839, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1033826916}
+    - target: {fileID: 7713942340111507839, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7713942340112613374, guid: f14ac10e29245bd4cbedaecdceb451b8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
