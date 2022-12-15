@@ -27,6 +27,10 @@ public class PlayerCombat : MonoBehaviour
     public static int currentHealth;
     public static bool gameOver;
     public static bool levelComplete;
+    public AudioSource audioSource;
+    public AudioClip attackSound;   
+
+
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -37,7 +41,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Update health bar UI
         HealthPoint.value = currentHealth;
@@ -45,10 +49,10 @@ public class PlayerCombat : MonoBehaviour
         enemiesCount = GameObject.FindGameObjectsWithTag("Enemies").Length;
         enemiesCountText.text = "Enemies left: " + enemiesCount.ToString();
 
-        LevelComplete();
         //Ensuring the object stays on track
         if (transform.position.z != 0)
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+       
 
         if (Time.time >= nextAttackTime)
         {
@@ -73,6 +77,8 @@ public class PlayerCombat : MonoBehaviour
     {
         //Play attack slash animation
         anim.SetTrigger("Slash");
+
+        audioSource.PlayOneShot(attackSound);
 
         //Detect enemies in attack range
         Collider [] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
@@ -138,8 +144,8 @@ public class PlayerCombat : MonoBehaviour
         //Debug message
         Debug.Log("GAME OVER!");
     }
-
-    void LevelComplete()
+    
+    public void LevelComplete()
     {
         if( enemiesCount == 0)
         {
@@ -153,8 +159,12 @@ public class PlayerCombat : MonoBehaviour
             {
                 int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
                 if (nextLevel == 4)
+                {
                     SceneManager.LoadScene(1); //Returns to MainMenu
-                if(PlayerPrefs.GetInt("CurrentLevel", 1) < nextLevel)
+                    return;
+                }
+
+                if (PlayerPrefs.GetInt("CurrentLevel", 1) < nextLevel)
                     PlayerPrefs.SetInt("CurrentLevel", nextLevel);
 
                 SceneManager.LoadScene(nextLevel);

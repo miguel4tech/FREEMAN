@@ -18,13 +18,14 @@ public class PlayerControllerExample : MonoBehaviour
     
     private float gravityValue = -9.81f;
 
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         playerInput = new PlayerActionsExample();
-        
     }
+
 
     private void Update()
     {
@@ -38,14 +39,12 @@ public class PlayerControllerExample : MonoBehaviour
         Vector3 move = new Vector3(movement.x, 0, movement.y);
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        
+
 
         if (move != Vector3.zero)
         {
-
             gameObject.transform.forward = move;
             anim.SetTrigger("IsRunning");
-
         }
 
         // bool jumpPress = playerInput.Player.Jump.IsPressed();
@@ -54,6 +53,7 @@ public class PlayerControllerExample : MonoBehaviour
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
+       
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -69,4 +69,6 @@ public class PlayerControllerExample : MonoBehaviour
         playerInput.Disable();
     }
 
+
+   
 }

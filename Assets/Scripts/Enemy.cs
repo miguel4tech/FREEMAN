@@ -8,16 +8,18 @@ public class Enemy : MonoBehaviour
 
     public float chaseRange = 3;
     public float attackRange = 2;
-    public float speed = 3;
+    public float speed = 100;
     public int currentHealth;
     public int maxHealth = 100;
     public Slider currentHealthBar;
     public Animator enemyAnim;
     private Transform target;
+    public Rigidbody rb;
     #endregion
     void Start() //Initializing components
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        Physics.gravity *= 1;
         currentHealthBar = FindObjectOfType<Slider>();
         enemyAnim = GetComponentInChildren<Animator>();
         currentHealthBar.value = currentHealth = maxHealth;
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Update health bar UI
         currentHealthBar.value = currentHealth;
@@ -43,21 +45,28 @@ public class Enemy : MonoBehaviour
             //play the run animation
             enemyAnim.SetTrigger("chase");
             enemyAnim.SetBool("isAttacking", false);
+            rb.isKinematic = false;
 
             if (distance < attackRange)
+            {
+                rb.isKinematic = true;
                 currentState = "AttackState";
+            }
 
             //move towards the player
             if (target.position.x > transform.position.x)
             {
                 //move right
-                transform.Translate(transform.right * speed * Time.deltaTime);
+                rb.velocity = Vector3.right * speed * Time.fixedDeltaTime;
+               // transform.Translate(transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else
             {
                 //move left
-                transform.Translate(-transform.right * speed * Time.deltaTime);
+                rb.velocity = Vector3.left * speed * Time.fixedDeltaTime;
+
+               // transform.Translate(-transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.identity;
             }
 

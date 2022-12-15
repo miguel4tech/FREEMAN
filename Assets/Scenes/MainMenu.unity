@@ -871,7 +871,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2535794515025101146}
+      - m_Target: {fileID: 766938407}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -1540,6 +1540,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706635979}
   m_CullTransparentMesh: 1
+--- !u!114 &766938407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1491203151133068946, guid: ab24843046a54f94cb90e4130c037286, type: 3}
+  m_PrefabInstance: {fileID: 3999516359952060360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98d2e1082681794fa7e9ac6548cd07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &784848756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3483,7 +3494,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2535794515025101146}
+      - m_Target: {fileID: 766938407}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: LoadNewScene
         m_Mode: 1
@@ -3543,17 +3554,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5230871745ac597499b6c83aec9426b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2535794515025101146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1491203151133068946, guid: ab24843046a54f94cb90e4130c037286, type: 3}
-  m_PrefabInstance: {fileID: 3999516359952060360}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98d2e1082681794fa7e9ac6548cd07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3999516359952060360
