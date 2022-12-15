@@ -15,11 +15,12 @@ public class Enemy : MonoBehaviour
     public Animator enemyAnim;
     private Transform target;
     public Rigidbody rb;
+
     #endregion
     void Start() //Initializing components
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        Physics.gravity *= 1;
+        Physics.gravity *= 2;
         currentHealthBar = FindObjectOfType<Slider>();
         enemyAnim = GetComponentInChildren<Animator>();
         currentHealthBar.value = currentHealth = maxHealth;
