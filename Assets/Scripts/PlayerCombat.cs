@@ -13,7 +13,6 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
-    public int enemiesCount;
 
     public float attackRange = 1.5f;
     public int attackDamage = 20;
@@ -30,6 +29,8 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        movement = FindObjectOfType<PlayerControllerExample>();
+
         anim = GetComponent<Animator>();
         attackPoint = GameObject.FindGameObjectWithTag("Target Point").transform;
         HealthPoint.value = currentHealth = maxHealth;
@@ -41,9 +42,6 @@ public class PlayerCombat : MonoBehaviour
         //Update health bar UI
         HealthPoint.value = currentHealth;
 
-        enemiesCount = GameObject.FindGameObjectsWithTag("Enemies").Length;
-
-        LevelComplete();
         //Ensuring the object stays on track
         if (transform.position.z != 0)
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
@@ -130,22 +128,22 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<Collider>().enabled = false;
 
         //Disable attached scripts
-        // movement.enabled = false;
-        // this.enabled = false;
+        movement.enabled = false;
+        this.enabled = false;
 
         //Debug message
         Debug.Log("GAME OVER!");
     }
 
-    void LevelComplete()
+    public void LevelComplete()
     {
-        if( enemiesCount == 0)
-        {
             transform.position = Vector3.zero;
             transform.rotation = Quaternion.Euler(0, 180, 0);
             anim.SetBool("Victory", true);
             //Victory
             levelComplete = true;
+            //disables movement script
+            movement.enabled = false;
             timer += Time.deltaTime; 
             if(timer > 5) // 5 seconds
             {
@@ -155,7 +153,6 @@ public class PlayerCombat : MonoBehaviour
 
                 SceneManager.LoadScene(nextLevel);
             }
-        }
     }
 
     void OnDrawGizmosSelected()//Displays in scene editor a sphere gizmos to show the range of attack w.r.t the enemy

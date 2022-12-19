@@ -8,8 +8,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager singleton {set; get;}
+    private PlayerCombat playerCombat;
+
     public static bool isGameStarted;
     public static bool isGamePaused;
+
+    public bool gameWin;
+    public int enemyTarget, totalEnemyKilled;
+
 
     public GameObject gameOverPanel;
     public GameObject GameStartedPanel;
@@ -27,6 +33,11 @@ public class GameManager : MonoBehaviour
         Audiomanager.instance.PlayMusic("Combat-Theme_Africa");
     }
 
+    void Start()
+    {
+        playerCombat = FindObjectOfType<PlayerCombat>();
+    }
+
 
 
     // Update is called once per frame
@@ -42,6 +53,12 @@ public class GameManager : MonoBehaviour
 
             isGameStarted = true;
             GameStartedPanel.SetActive(false);
+        }
+
+        if(totalEnemyKilled >= enemyTarget && !gameWin)
+        {
+            gameWin = true;
+            playerCombat.LevelComplete();
         }
 
         if(PlayerCombat.gameOver)

@@ -5,18 +5,25 @@ public class Enemy : MonoBehaviour
 {
     #region VARIABLES
     private string currentState = "IdleState";
+    private bool isDead;
 
     public float chaseRange = 3;
     public float attackRange = 2;
     public float speed = 3;
+
     public int currentHealth;
     public int maxHealth = 100;
+
     public Slider currentHealthBar;
     public Animator enemyAnim;
+    
     private Transform target;
+    private GameManager gameManager;
     #endregion
     void Start() //Initializing components
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealthBar = FindObjectOfType<Slider>();
         enemyAnim = GetComponentInChildren<Animator>();
@@ -82,10 +89,10 @@ public class Enemy : MonoBehaviour
         //Play impact animation
         enemyAnim.SetTrigger("Impact");
 
-        if(currentHealth <= 0)
+        if(currentHealth <= 0 && !isDead)
         {
             Die();
-            currentState = "DeathState";
+            isDead = true;
         }
     }
     
@@ -94,10 +101,11 @@ public class Enemy : MonoBehaviour
     {
         //Play a die animation
         enemyAnim.SetBool("isDead", true);
-
         //Disable enemy so no interaction is allowed
         GetComponent<Collider>().enabled = false;
-        //Destroy enemy
+        //Increments the body count
+        gameManager.totalEnemyKilled += 1;
+        //Destroy enemy after 10secs
         Object.Destroy(gameObject, 10f );
     }
 
