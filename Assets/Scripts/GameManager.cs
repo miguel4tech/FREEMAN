@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
             DontDestroyOnLoad(gameObject);
 		}
+    public GameObject isGameStartedPanel;
+
+    void Awake()
+    {
+        singleton = this;
+        Audiomanager.instance.PlayMusic("Combat-Theme_Africa");
     }
 
     private void Start()
@@ -51,12 +57,11 @@ public class GameManager : MonoBehaviour
             }
 
             isGameStarted = true;
-            GameStartedPanel.SetActive(false);
+            isGameStartedPanel.SetActive(false);
         }
 
         if (PlayerCombat.gameOver)
         {
-            gameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
 
@@ -89,7 +94,7 @@ public class GameManager : MonoBehaviour
     }
     public void Quit()
     {
-        print("Game Exit");
+        Debug.Log("Game Exit");
         Application.Quit();
     }
 

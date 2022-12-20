@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat-Stage-CityLevel.unity
     guid: fcf9c9b1a47483741882cebbc8406fd5
-  - enabled: 1
-    path: Assets/Scenes/Combat-Stage-CityLevel 1.unity
-    guid: 42f05250218dfbf48a2d4630829d1f3b
   m_configObjects: {}
