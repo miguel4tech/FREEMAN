@@ -1001,8 +1001,6 @@ GameObject:
   - component: {fileID: 5629240728151772426}
   - component: {fileID: 5629240728151772429}
   - component: {fileID: 5629240728151772427}
-  - component: {fileID: 2025941359}
-  - component: {fileID: 2025941364}
   m_Layer: 6
   m_Name: SwordWarrior
   m_TagString: Player
@@ -1092,18 +1090,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed571c975c558845a56ad9e4187d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  currentHealthPoint: {fileID: 0}
+  HealthPoint: {fileID: 0}
   anim: {fileID: 0}
-  attackPoint: {fileID: 0}
+  audioSource: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: f10ff2c893057d54494aa9d407979cd7, type: 3}
+  attackPoint: {fileID: 5629240729384282817}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  attackRate: 2
   attackRange: 1.5
   attackDamage: 20
-  attackRate: 2
-  movement: {fileID: 5629240728151772429}
-  gameOver: 0
 --- !u!1 &5449400894735358766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1177,7 @@ GameObject:
   m_Layer: 6
   m_Name: attackPoint
   m_TagString: Target Point
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

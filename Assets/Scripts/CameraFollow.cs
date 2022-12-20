@@ -9,7 +9,6 @@ public class CameraFollow : MonoBehaviour
 
     //Some cool skybox rotation
     public float rotateSpeed = 1.2f;
- 
     void Start()
     {
         targetPlayer = GameObject.FindGameObjectWithTag("Player").transform;

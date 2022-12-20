@@ -6,70 +6,45 @@ using UnityEngine.SceneManagement;
 public class PlayerCombat : MonoBehaviour
 {
     #region VARIABLES
-    public static int score;
-    public TextMeshProUGUI scoreText;
-
-    public Slider currentHealthPoint;
+    private PlayerControllerExample movement; //Reference to the movement script controlling the button UI
+    private GameManager gameManager;
+    public Slider HealthPoint;
 
     public Animator anim;
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
-<<<<<<< HEAD
-    public int enemiesCount;
-    public TextMeshProUGUI enemiesCountText;
-=======
->>>>>>> parent of 5ee6deb (FIX)
 
+    public float attackRate = 2f;
     public float attackRange = 1.5f;
     public int attackDamage = 20;
 
-    public float attackRate = 2f;
     private float nextAttackTime = 0f;
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 5ee6deb (FIX)
 
     private int maxHealth = 100;
-    public static int currentHealth;
-    
-    public PlayerControllerExample movement; //Reference to the movement script controlling the button UI
+    public int currentHealth;
 
-    public static bool gameOver;
-<<<<<<< HEAD
-    public AudioSource audioSource;
-    public AudioClip attackSound;   
-
-
-=======
-    public GameObject gameOverPanel;
->>>>>>> parent of 5ee6deb (FIX)
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        Physics.gravity *= 2;
+        movement = FindObjectOfType<PlayerControllerExample>();
+        gameManager = FindObjectOfType<GameManager>();
+
         anim = GetComponent<Animator>();
         attackPoint = GameObject.FindGameObjectWithTag("Target Point").transform;
-        currentHealthPoint.value = currentHealth = maxHealth;
+        HealthPoint.value = currentHealth = maxHealth;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Update health bar UI
-<<<<<<< HEAD
         HealthPoint.value = currentHealth;
 
-
-=======
-        currentHealthPoint.value = currentHealth;
->>>>>>> parent of 5ee6deb (FIX)
         //Ensuring the object stays on track
         if (transform.position.z != 0)
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-       
 
         if (Time.time >= nextAttackTime)
         {
@@ -86,7 +61,11 @@ public class PlayerCombat : MonoBehaviour
                 //Attack twice per second
                 nextAttackTime = nextAttackTime + 1f / attackRange;
             }
-
+        }
+        if (currentHealth <= 0)
+        {
+            Die();
+            gameManager.gameOver= true;
         }
     }
 
@@ -95,7 +74,7 @@ public class PlayerCombat : MonoBehaviour
         //Play attack slash animation
         anim.SetTrigger("Slash");
 
-        audioSource.PlayOneShot(attackSound);
+        Audiomanager.instance.PlaySFX("Woosh");
 
         //Detect enemies in attack range
         Collider [] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
@@ -129,55 +108,50 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    // Inflict damage on the player
+     // Inflict damage on the player
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         //Play impact animation
-        anim.SetTrigger("Impact");
+        //anim.SetTrigger("Impact");
 
-        if (currentHealth <= 0)
-        {
-            Die();
-            gameOver = true;
-        }
     }
 
     void Die()
     {
         //Play died animation
         anim.SetBool("IsDead", true);
-        gameOver= true;
-        gameOverPanel.SetActive(true);
 
         //Disable enemy so no interaction is allowed
         GetComponent<Collider>().enabled = false;
 
-
         //Disable attached scripts
         movement.enabled = false;
+
+        currentHealth = maxHealth;
         this.enabled = false;
 
         //Debug message
         Debug.Log("GAME OVER!");
     }
-<<<<<<< HEAD
-    
-   
+
+    public void LevelComplete()
+    {
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            anim.SetBool("Victory", true);
+
+            //disables movement script
+            movement.enabled = false;
+            
+    }
 
     void OnDrawGizmosSelected()//Displays in scene editor a sphere gizmos to show the range of attack w.r.t the enemy
-=======
-
-
-    //Displays in scene editor a sphere gizmos to show the range of attack w.r.t the enemy
-    void OnDrawGizmosSelected()
->>>>>>> parent of 5ee6deb (FIX)
     {
         if(attackPoint == null)
         return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
 
 }

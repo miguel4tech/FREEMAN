@@ -4,46 +4,46 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using System;
-using System.Runtime.CompilerServices;
 
-delegate void spawnDelegate();
-public class GameManager : MonoBehaviour 
+public class GameManager : MonoBehaviour
 {
     public static GameManager singleton {set; get;}
+    private PlayerCombat playerCombat;
+    private Enemy enemyScript;
+
     public static bool isGameStarted;
     public static bool isGamePaused;
 
+    public bool gameWin;
+    public bool gameOver;
+    public int enemyTarget, totalEnemyKilled;
+
+
+
     public GameObject gameOverPanel;
     public GameObject GameStartedPanel;
-    private PlayerCombat playerCombat;
-    private SpawnManager spawnManager;
-    private float timer;
-    public static bool levelComplete;
-
-
 
     void Awake()
     {
-		if(singleton == null)
+		if(singleton== null)
 		    singleton = this;
 		else 
 		{
 			Destroy(gameObject);
-            DontDestroyOnLoad(gameObject);
+			return;
 		}
-    public GameObject isGameStartedPanel;
-
-    void Awake()
-    {
-        singleton = this;
+		DontDestroyOnLoad(gameObject);
         Audiomanager.instance.PlayMusic("Combat-Theme_Africa");
     }
 
-    private void Start()
+    void Start()
     {
-        ResetLevel();
+        gameWin = gameOver = isGamePaused = false;
+        playerCombat = FindObjectOfType<PlayerCombat>();
+        enemyScript = FindObjectOfType<Enemy>();
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -57,24 +57,24 @@ public class GameManager : MonoBehaviour
             }
 
             isGameStarted = true;
-            isGameStartedPanel.SetActive(false);
+            GameStartedPanel.SetActive(false);
         }
 
-        if (PlayerCombat.gameOver)
+        if(totalEnemyKilled >= enemyTarget && !gameWin)
         {
-            Time.timeScale = 0;
+            gameWin = true;
+            playerCombat.LevelComplete();
+            int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+            if(PlayerPrefs.GetInt("CurrentLevel", 1) < nextLevel)
+                PlayerPrefs.SetInt("CurrentLevel", nextLevel);
+            SceneManager.LoadScene(nextLevel);
         }
 
-        spawnDelegate enemiesSpawn = spawnManager.SpawnEnemies;
-        //spawn Enemies
-        if(spawnManager.spawnComplete == true)
+        if(gameOver)
         {
-            LevelComplete();
+            gameOverPanel.SetActive(true);
+            enemyScript.enemyAnim.enabled = false;
         }
-        enemiesSpawn();
-        //Check if level is complete
-
-       
     }
 
     public void Pause()
@@ -94,48 +94,7 @@ public class GameManager : MonoBehaviour
     }
     public void Quit()
     {
-        Debug.Log("Game Exit");
+        print("Game Exit");
         Application.Quit();
     }
-
-    void ResetLevel()
-    {
-        playerCombat =  FindObjectOfType<PlayerCombat>();
-        isGameStarted = false;
-        spawnManager = FindObjectOfType<SpawnManager>();
-    }
-    private void onLevelFinishedLoading(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        ResetLevel();
-    }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += onLevelFinishedLoading;
-    }
-
-    void LevelComplete()
-    {
-            transform.position = Vector3.zero;
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-            playerCombat.anim.SetBool("Victory", true);
-            //Victory
-            levelComplete = true;
-            timer += Time.deltaTime;
-        if (timer > 5) // 5 seconds
-        {
-            int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-
-            if (nextLevel == 4)
-            {
-                SceneManager.LoadScene(1); //Returns to MainMenu
-                return;
-            }
-
-            if (PlayerPrefs.GetInt("CurrentLevel", 1) < nextLevel)
-                PlayerPrefs.SetInt("CurrentLevel", nextLevel);
-
-            SceneManager.LoadScene(nextLevel);
-        }
-    }
-
 }

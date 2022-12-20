@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public PlayerCombat playerCombat;
+    private PlayerCombat playerCombat;
     void Awake()
     {
-        playerCombat = GetComponent<PlayerCombat>();
+        playerCombat = FindObjectOfType<PlayerCombat>();
     }
     public void Attack(int damageAmount)
     {
-        PlayerCombat.currentHealth -= damageAmount;
+        playerCombat.currentHealth -= damageAmount;
     }
 }
